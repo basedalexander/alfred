@@ -10,35 +10,19 @@ const semanticSearchPostTable = {
 
 
 // Functions for getting data
-const getInformationFromLens = {
-    name: "getInformationFromLens",
+const getSpecificInformationUsingGraphQL = {
+    name: "getSpecificInformationUsingGraphQL",
     args: "{queryString: str}",
     inputData: "",
-    description: "This function takes a query string and asks chatGPT to create a GraphQL query based on human language query. After that, it executes that query to fetch results from lens protocol.",
+    description: "Takes a complex query and then uses ChatGPT to write GraphQL query for that. Fetches data based on that query from Lens Protocol.",
     outputDescription: "JSON object respresenting information resquested"
 };
 
-const getProfileInformationFromLens = {
-    name: "getProfileInformationFromLens",
+const getProfileInformation = {
+    name: "getProfileInformation",
     args: "{profileId: str, informationRequired}",
     inputData: "",
-    description: "This function takes a lens profile ID or address, and information required and then gets information required from all the information available about that profile on the lens protocol.",
-    outputDescription: "JSON object respresenting profile information"
-};
-
-const getProfileInformationFromAirstack = {
-    name: "getProfileInformationFromAirstack",
-    args: "{profileId: str, informationRequired}",
-    inputData: "",
-    description: "This function takes a lens profile ID or address , and information required and then gets information required from all the information available about that profile on the airstack.",
-    outputDescription: "JSON object respresenting profile information"
-};
-
-const getProfileInformationFromTheGraph = {
-    name: "getProfileInformationFromTheGraph",
-    args: "{profileId: str, informationRequired}",
-    inputData: "",
-    description: "This function takes a lens profile ID or address, and information required and then gets information required from all the information available about that profile on the the graph protocol.",
+    description: "Fetches information like bio, publications, comments, ownerships etc about a user profile from different data sources like Lens, Airstack and GraphQL",
     outputDescription: "JSON object respresenting profile information"
 };
 
@@ -75,12 +59,11 @@ const summarizeProfileData = {
 
 module.exports = [
     semanticSearchPostTable, 
-    getInformationFromLens,
-    getProfileInformationFromLens,
-    getProfileInformationFromAirstack,
-    getProfileInformationFromTheGraph,
+    getSpecificInformationUsingGraphQL,
+    getProfileInformation,
     getFollowersOfProfileId,
     filterProfilesListByFollowers,
-    summarizeProfileData,
+    summarizeProfileData
+
     
 ]
