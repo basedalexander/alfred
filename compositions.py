@@ -1,13 +1,13 @@
 
 compositions = {
     "Find me people talking about longevity": [
-        semanticSearchPostTable('longetivity',["profileId"])
+        semanticSearchPostTable('longevity',["profileId"])
     ],
     "Find people that write about solidity developement": [
         semanticSearchPostTable('solidity developement',["profileId"])
     ],
     "Find people that follow me, that talk about longevity": [
-        semanticSearchPostTable('longetivity',["profile_id"]),
+        semanticSearchPostTable('longevity',["profile_id"]),
         filterFollowersOfProfileId(userId, profileIds)
     ],
     "Give a quick summary about a person based on lens handle": [

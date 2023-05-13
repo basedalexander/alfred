@@ -1,3 +1,5 @@
+
+
 // Call Embedding API endpoint to get relevant posts
 // step 1: Call Embeddings endpoint to fetch data based on query parameters
 const semanticSearchOverPosts = {
@@ -5,7 +7,7 @@ const semanticSearchOverPosts = {
     args: "{query: str , returnMetadataFields: list}",
     inputData: "",
     description: "Search for the posts with the most similar text content to the given query. `returnMetadataFields` is a list of fields that should be returned for each post: it can be any of ['content','post_id','profile_id','main_content_focus','language','block_timestamp','content_uri']",
-    outputDescription: "List unique values of the variables to extract based on our semantic search criteria"
+    outputDescription: "Extracted data based on  semantic search criteria"
 };
 
 
@@ -28,7 +30,7 @@ const getSpecificInformationUsingGraphQL = {
 // step 4 (optional): Ask LLM to consolidate all that information into a single JSON by promting it something like "There are some duplicate data, try to merge information etc etc"
 const getProfileInformation = {
     name: "getProfileInformation",
-    args: "{profileId: str, informationRequired}",
+    args: "{profileId: str, informationRequired: list}",
     inputData: "",
     description: "Fetches information like bio, publications, comments, ownerships etc about a user profile from different data sources like Lens, Airstack and GraphQL",
     outputDescription: "JSON object respresenting profile information"
@@ -59,6 +61,33 @@ const filterLLM = {
     outputDescription: "Filtered Data"
 } 
 
+// step 1: Keep only profile ids in profile_ids that are followers of profile_id
+const keepOnlyFollowers = {
+    name: "keepOnlyFollowers",
+    args: "{profile_id: str , profile_ids: list}",
+    inputData: "",
+    description: "Filters to keep only profile ids in profile_ids that are followers of profile_id",
+    outputDescription: "List of profile IDS filtered"
+};
+
+
+// step 1: Keep only profile ids in profile_ids that are being followed by profile_id
+const keepOnlyFollowing = {
+    name: "keepOnlyFollowing",
+    args: "{profile_id: str , profile_ids: list}",
+    inputData: "",
+    description: "Filters to keep only profile ids in profile_ids that are being followed by profile_id",
+    outputDescription: "List of profile IDS filtered"
+};
+
+// step 1: Keep only profile ids in profile_ids that are being followed by profile_id
+const filterByValue = {
+    name: "filterByValue",
+    args: "{data: json , filter: string}",
+    inputData: "",
+    description: "Filters the data based on specific criteria",
+    outputDescription: "List of data filtered"
+};
 
 const mds = [
     semanticSearchOverPosts, 
@@ -66,8 +95,12 @@ const mds = [
     getProfileInformation,
     summarizeProfileData,
     filterLLM,
+    keepOnlyFollowers,
+    keepOnlyFollowing,
+    filterByValue
+
 ];
 
-// console.log(JSON.stringify(mds, null, 2));
 
+// console.log(createPrompt(mds, "Give me all the people talking about longevity in the workplace"));
 module.exports = mds;
