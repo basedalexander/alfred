@@ -1,15 +1,17 @@
-// Functions for searching
-const semanticSearchPostTable = {
-    name: "semanticSearchPostTable",
-    args: "{searchTerm: str ,  extractVariables: list}",
+// Call Embedding API endpoint to get relevant posts
+// step 1: Call Embeddings endpoint to fetch data based on query parameters
+const semanticSearchOverPosts = {
+    name: "semanticSearchOverPosts",
+    args: "{query: str , returnMetadataFields: list}",
     inputData: "",
-    description: "This function takes a search string and a list of variables that need to be extracted for given search terms. It uses embeddings database to do the search and returns the rows that have high similarity wrt search term. Finally it keeps only the unique values for variables that we need to extract. The extract_variables can only take one of the following values ['content','post_id','profile_id','main_content_focus','language','block_timestamp','content_uri']",
+    description: "Search for the posts with the most similar text content to the given query. `returnMetadataFields` is a list of fields that should be returned for each post: it can be any of ['content','post_id','profile_id','main_content_focus','language','block_timestamp','content_uri']",
     outputDescription: "List unique values of the variables to extract based on our semantic search criteria"
 };
 
 
-
-// Functions for getting data
+// Uses GraphQL to fetch complicated data from Lens Protocol GraphQL API
+// step 1: Prompt LLM to generate GraphQL query string based on Lens Protocol documentation
+// step 2: Call Lens protocol API to fetch the data based on graphQL query 
 const getSpecificInformationUsingGraphQL = {
     name: "getSpecificInformationUsingGraphQL",
     args: "{queryString: str}",
@@ -18,6 +20,12 @@ const getSpecificInformationUsingGraphQL = {
     outputDescription: "JSON object respresenting information resquested"
 };
 
+
+// Get all the requested information about the profile
+// step 1: Infer what  informations are required through informationRequired input (bio, followers, posts, comments, NFTs, Tokens etc)
+// step 2: Query relevant API's like Lens, Airstack, TheGraph to fetch the data
+// step 3: Compile all the received data into a list
+// step 4 (optional): Ask LLM to consolidate all that information into a single JSON by promting it something like "There are some duplicate data, try to merge information etc etc"
 const getProfileInformation = {
     name: "getProfileInformation",
     args: "{profileId: str, informationRequired}",
@@ -26,44 +34,40 @@ const getProfileInformation = {
     outputDescription: "JSON object respresenting profile information"
 };
 
-const getFollowersOfProfileId = {
-    name: "getFollowersOfProfileId",
-    args: "{profileId: str}",
-    inputData: "",
-    description: "Returns all the followers of a given Profile ID",
-    outputDescription: "List of all the followers of the profile id"
-};
 
 
-
-// Functions for Filtering
-const filterProfilesListByFollowers = {
-    name: "filterFollowersOfProfileId",
-    args: "{profileId: str, profilesList: []}",
-    inputData: "",
-    description: "This functions filters through profilesList to keep only those profile which follow profileId",
-    outputDescription: "Profiles in profilesList that follow profileId"
-};
-
+// Uses LLM to summarize 
+// step 1: Prompt LLM to summarize the input profileData, and ask it to generate useful insights  
+// step 2: Returns the LLM output
 const summarizeProfileData = {
     name: "summarizeProfileData",
     args: "{profileData: str}",
     inputData: "",
-    description: "Gets a profile data in JSON format and asks chatGPT to summarizes it in detail and provide insights like what the user talks about and what kind of things he own etc.",
+    description: "Prompts chatGPT to summarize profileData detail and provide insights like what the user talks about and what kind of things he own etc.",
     outputDescription: "Human readable insigts about the provided profile data."
 };
 
 
+// Uses LLM to filter 
+// step 1: Prompt LLM to filter data based on given prompt and information sources
+// step 2: Returns the LLM output
+const filterLLM = {
+    name: "filterLLM",
+    args: "{informationSource1: str, informationSource2: str, filterCommand: str}",
+    inputData: "",
+    description: "Filters specific information from informationSource1 using data from informationSource2 based on filterCommands",
+    outputDescription: "Filtered Data"
+} 
 
 
-
-module.exports = [
-    semanticSearchPostTable, 
+const mds = [
+    semanticSearchOverPosts, 
     getSpecificInformationUsingGraphQL,
     getProfileInformation,
-    getFollowersOfProfileId,
-    filterProfilesListByFollowers,
-    summarizeProfileData
+    summarizeProfileData,
+    filterLLM,
+];
 
-    
-]
+console.log(JSON.stringify(mds, null, 2));
+
+module.exports = mds;
