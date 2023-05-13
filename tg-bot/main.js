@@ -1,11 +1,11 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
-const app = express();
-app.use(express.urlencoded({extended:true}));
 require('../app/index');
 const registry = require('../app/commands/command-registry');
 const { createPrompt } = require('../app/commands-compositor/create-prompt.func');
 const OpenAIDatasource = require('../app/commands-compositor/open-ai-service');
+const app = express();
+app.use(express.urlencoded({extended:true}));
 
 let OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 let TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
