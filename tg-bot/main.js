@@ -3,8 +3,7 @@ const express = require('express');
 const app = express();
 app.use(express.urlencoded({extended:true}));
 require('../app/index');
-
-const registry = require('../app/command-registry');
+const registry = require('../app/commands/command-registry');
 
 let TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -35,15 +34,15 @@ async function handleTelegramMessage (msg) {
   }
 
   console.log(`chatId: ${chatId}, prompt: ${text}`);
+  let execResult = 'execution result';
 
-  // 1. Identify sequence of commands and their arguments based on user input
-  // 2. Based on the instruction set from LLM how to execute the commands and with what arguments
-  // 3. Contruct a pipeline of function that is executed in a chain.
+  // 1. Get user input and construct a prompt for 
+  const prompt = ''; // createPrompt(text);
+  const instructions = ''; // composer.getInstructions(prompt);
+  // execResult = await commandsExecutor.execute(instructions);
+  const result = execResult;
 
-
-  let response = `${JSON.stringify(allMds, null, 4)}`;
-
-  bot.sendMessage(chatId, `${response}`);
+  bot.sendMessage(chatId, `${result}`);
 }
 
 function replyError(chatId, err) {

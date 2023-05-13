@@ -1,6 +1,6 @@
-const registry = require("./command-registry");
+const registry = require("./commands/command-registry");
 const metadatadas = require('./metadatas');
-const { commandFunctions: functions } = require('./commandFunctions');
+const { commandFunctions: functions } = require('./commands/commandFunctions');
 
 console.log(functions);
 
