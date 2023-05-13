@@ -1,4 +1,12 @@
-const semanticSearchPostTable = {
+const searchPublicationsByStringMd = {
+    name: "searchPublicationsByString",
+    args: "{searchTerm: str ,  extractVariables: list}",
+    inputData: "",
+    description: "This function takes a search string and a list of variables that need to be extracted for given search terms. It uses embeddings database to do the search and returns the rows that have high similarity wrt search term. Finally it keeps only the unique values for variables that we need to extract. The extract_variables can only take one of the following values ['content','post_id','profile_id','main_content_focus','language','block_timestamp','content_uri']",
+    outputDescription: "List unique values of the variables to extract based on our semantic search criteria"
+}
+
+const semanticSearchPostTableMd = {
     name: "semanticSearchPostTable",
     args: "{searchTerm: str ,  extractVariables: list}",
     inputData: "",
@@ -6,7 +14,7 @@ const semanticSearchPostTable = {
     outputDescription: "List unique values of the variables to extract based on our semantic search criteria"
 };
 
-const getInformationFromLens = {
+const getInformationFromLensMd = {
     name: "getInformationFromLens",
     args: "{queryString: str}",
     inputData: "",
@@ -14,7 +22,7 @@ const getInformationFromLens = {
     outputDescription: "JSON object respresenting information resquested"
 };
 
-const getProfileInformationFromLens = {
+const getProfileInformationFromLensMd = {
     name: "getProfileInformationFromLens",
     args: "{profileId: str, informationRequired}",
     inputData: "",
@@ -22,7 +30,7 @@ const getProfileInformationFromLens = {
     outputDescription: "JSON object respresenting profile information"
 };
 
-const getProfileInformationFromAirstack = {
+const getProfileInformationFromAirstackMd = {
     name: "getProfileInformationFromAirstack",
     args: "{profileId: str, informationRequired}",
     inputData: "",
@@ -30,7 +38,7 @@ const getProfileInformationFromAirstack = {
     outputDescription: "JSON object respresenting profile information"
 };
 
-const getProfileInformationFromTheGraph = {
+const getProfileInformationFromTheGraphMd = {
     name: "get_profile_information_from_the_graph",
     args: "{profileId: str, informationRequired}",
     inputData: "",
@@ -39,7 +47,7 @@ const getProfileInformationFromTheGraph = {
 };
 
 
-const filterFollowersOfProfileId = {
+const filterFollowersOfProfileIdMd = {
     name: "filterFollowersOfProfileId",
     args: "{userId: str, profileIds: []}",
     inputData: "",
@@ -47,7 +55,7 @@ const filterFollowersOfProfileId = {
     outputDescription: "Filtered profiles that only follow the given userID"
 };
 
-const summarizeProfileData = {
+const summarizeProfileDataMd = {
     name: "summarizeProfileData",
     args: "{profileData: str}",
     inputData: "",
@@ -56,11 +64,12 @@ const summarizeProfileData = {
 };
 
 module.exports = [
-    semanticSearchPostTable, 
-    getInformationFromLens,
-    getProfileInformationFromLens,
-    getProfileInformationFromAirstack,
-    getProfileInformationFromTheGraph,
-    filterFollowersOfProfileId,
-    summarizeProfileData
+    searchPublicationsByStringMd,
+    semanticSearchPostTableMd, 
+    getInformationFromLensMd,
+    getProfileInformationFromLensMd,
+    getProfileInformationFromAirstackMd,
+    getProfileInformationFromTheGraphMd,
+    filterFollowersOfProfileIdMd,
+    summarizeProfileDataMd
 ]

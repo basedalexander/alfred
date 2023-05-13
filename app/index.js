@@ -1,13 +1,14 @@
 const registry = require("./command-registry");
-const searchPublicationsByStringRegistryData = require("./commands/search-publications-by-string.command");
+const metadatadas = require('./metadatas');
+const { commandFunctions: functions } = require('./commandFunctions');
 
-const commands = [
-    {
-        func: searchPublicationsByStringRegistryData.func,
-        metadata: searchPublicationsByStringRegistryData.metadata
+console.log(functions);
+
+metadatadas.forEach(md => {
+    const foundFunc = functions.find(f => f.name === md.name);
+    if (!foundFunc) {
+        console.warn(`function for command ${md.name} was not found`);
+    } else {
+        registry.register(foundFunc, md);
     }
-]
-
-commands.forEach(c => {
-    registry.register(c.func, c.metadata);
 });
