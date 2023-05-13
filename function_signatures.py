@@ -6,6 +6,10 @@ compositions = {
     "Find people that follow me, that talk about longevity": [
         semanticSearchPostTable('longetivity',["profile_id"]),
         filterFollowersOfProfileId(userId, profileIds)
+    ],
+    "Give a quick summary about a person based on lens handle": [
+        getProfileInformationFromLens(profileId, informationRequired),
+        summarizeProfile()
     ]
 
 }
@@ -36,6 +40,5 @@ compositions = {
 # Find posts that talk about longevity and have more that 2 replies and 1 like
 # Find people that write about solidity developement
 # Find people writing about defi and have more than 500 followers
-# Give a quick summary about a person based on lens handle.
 # Find top 10 investors by followerswho talk about network state
 # Find all posts that contain video and talk about space tech.

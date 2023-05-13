@@ -52,7 +52,7 @@ const summarizeProfileData = {
     args: "{profileData: str}",
     inputData: "",
     description: "Gets a profile data in JSON format and summarizes it in detail.",
-    outputDescription: "JSON object respresenting profile information"
+    outputDescription: "Human readable insigts about the provided profile data."
 };
 
 module.exports = [
@@ -61,5 +61,6 @@ module.exports = [
     getProfileInformationFromLens,
     getProfileInformationFromAirstack,
     getProfileInformationFromTheGraph,
-    filterFollowersOfProfileId
+    filterFollowersOfProfileId,
+    summarizeProfileData
 ]
