@@ -2,6 +2,8 @@
 
 post_table = ['content','profile_id','post_id']
 
+
+
 def semantic_search_post_table(search_term: str ,  extract_variables: list):
     # Search Embeddings Database
     # Take top N results and get the variables requested in extract_variables
@@ -14,14 +16,18 @@ def get_followers_information(profile_id):
     return dict
 
 
+def get_profile_information_from_lens(profile_id: str, information_required):
 def get_profile_information_from_lens(profileHandle: str, information_required):
     return dict
 
-def get_profile_information_from_airstack(graphql_query: str, information_required):
+def get_profile_information_from_airstack(profile_id: str, information_required):
     return dict
 
+def get_profile_information_from_thegraphql(profile_id: str, information_required):
+    return dict
 # def get_profile_information_from_thegraphql(graphql_query: str, information_required):
 #     return dict
+
 
 def summarize_profile(profile_id):
     # Ask GPT to summarize the content
