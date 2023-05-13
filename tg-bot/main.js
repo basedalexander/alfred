@@ -2,10 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const app = express();
 app.use(express.urlencoded({extended:true}));
-
 require('../app/index');
-
-
 
 const registry = require('../app/command-registry');
 
@@ -37,9 +34,12 @@ async function handleTelegramMessage (msg) {
     return;
   }
 
-  const allMds = registry.getAllMetadatas();
-
   console.log(`chatId: ${chatId}, prompt: ${text}`);
+
+  // 1. Identify sequence of commands and their arguments based on user input
+  // 2. Based on the instruction set from LLM how to execute the commands and with what arguments
+  // 3. Contruct a pipeline of function that is executed in a chain.
+
 
   let response = `${JSON.stringify(allMds, null, 4)}`;
 
