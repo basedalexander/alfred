@@ -1,3 +1,4 @@
+// Functions for searching
 const semanticSearchPostTable = {
     name: "semanticSearchPostTable",
     args: "{searchTerm: str ,  extractVariables: list}",
@@ -6,6 +7,9 @@ const semanticSearchPostTable = {
     outputDescription: "List unique values of the variables to extract based on our semantic search criteria"
 };
 
+
+
+// Functions for getting data
 const getInformationFromLens = {
     name: "getInformationFromLens",
     args: "{queryString: str}",
@@ -31,14 +35,24 @@ const getProfileInformationFromAirstack = {
 };
 
 const getProfileInformationFromTheGraph = {
-    name: "get_profile_information_from_the_graph",
+    name: "getProfileInformationFromTheGraph",
     args: "{profileId: str, informationRequired}",
     inputData: "",
     description: "This function takes a lens profile ID or address, and information required and then gets information required from all the information available about that profile on the the graph protocol.",
     outputDescription: "JSON object respresenting profile information"
 };
 
+const getFollowersOfProfileId = {
+    name: "getFollowersOfProfileId",
+    args: "{profileId: str}",
+    inputData: "",
+    description: "Returns all the followers of a given Profile ID",
+    outputDescription: "List of all the followers of the profile id"
+};
 
+
+
+// Functions for Filtering
 const filterFollowersOfProfileId = {
     name: "filterFollowersOfProfileId",
     args: "{userId: str, profileIds: []}",
@@ -51,9 +65,13 @@ const summarizeProfileData = {
     name: "summarizeProfileData",
     args: "{profileData: str}",
     inputData: "",
-    description: "Gets a profile data in JSON format and summarizes it in detail.",
+    description: "Gets a profile data in JSON format and asks chatGPT to summarizes it in detail and provide insights like what the user talks about and what kind of things he own etc.",
     outputDescription: "Human readable insigts about the provided profile data."
 };
+
+
+
+
 
 module.exports = [
     semanticSearchPostTable, 
@@ -61,6 +79,8 @@ module.exports = [
     getProfileInformationFromLens,
     getProfileInformationFromAirstack,
     getProfileInformationFromTheGraph,
+    getFollowersOfProfileId,
     filterFollowersOfProfileId,
-    summarizeProfileData
+    summarizeProfileData,
+    
 ]
