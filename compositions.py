@@ -22,14 +22,11 @@ compositions = {
 
 
 
+
+
+
 # Find all posts that contain videos and talk about space tech.
-
 # Who are my weekly active followr
-    # Get all my followers
-    # Find their activity (likes, comments etc)
-    # Keep only if they were active last week
-
-
 # Who are not collecting my posts.
 # Who collected more that one post
 # WHo coleected more than 5 mosts
