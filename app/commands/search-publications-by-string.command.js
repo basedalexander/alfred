@@ -6,4 +6,4 @@ export const searchPublicationsByStringMd = {
     outputDescription: outputDescription
 };
 
-export async function searchPublicationsByString(string) {}
+export async function searchPublicationsByString(input, args) {}
