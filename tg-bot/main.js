@@ -4,6 +4,9 @@ require('../app/index');
 const registry = require('../app/commands/command-registry');
 const { createPrompt } = require('../app/commands-compositor/create-prompt.func');
 const OpenAIDatasource = require('../app/commands-compositor/open-ai-service');
+const CommandExecutor = require('../app/commands-executor/command-executor');
+
+const executor = new CommandExecutor();
 const app = express();
 app.use(express.urlencoded({extended:true}));
 
@@ -19,6 +22,15 @@ const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, {polling: true});
 const commandsInstructionsComposer = new OpenAIDatasource(OPENAI_API_KEY)
 
 bot.on('message', async (msg) => {
+  const chatId = msg.chat.id;
+  console.log(`received message from chatid ${chatId}`);
+
+  const text = msg.text;
+  if (!text) {
+    bot.sendMessage(chatId, 'unsupported format from telegram');
+    return;
+  }
+
   try {
     await handleTelegramMessage(msg);
   } catch (e) {
@@ -29,13 +41,7 @@ bot.on('message', async (msg) => {
 
 async function handleTelegramMessage (msg) {
   const chatId = msg.chat.id;
-  console.log(`received message from chatid ${chatId}`);
-
   const text = msg.text;
-  if (!text) {
-    bot.sendMessage(chatId, 'unsupported format from telegram');
-    return;
-  }
 
   console.log(`chatId: ${chatId}, prompt: ${text}`);
   let execResult = 'execution result';
@@ -43,23 +49,12 @@ async function handleTelegramMessage (msg) {
   // 1. Get user input and construct a prompt for 
   const allMds = registry.getAllMetadatas();
   const prompt = createPrompt(allMds, text);
-  console.log(prompt);
   const instructions = await commandsInstructionsComposer.ask(prompt);
-  execResult = instructions; // await commandsExecutor.execute(instructions);
+  execResult = await executor.execute(instructions);
   const result = execResult;
-  
-
   bot.sendMessage(chatId, `${result}`);
 }
 
 function replyError(chatId, err) {
   bot.sendMessage(chatId, `error occured: ${err}`);
 }
-
-app.get('/ping', async (req, res) => {
-  res.send('pong');
-});
-
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
-});
