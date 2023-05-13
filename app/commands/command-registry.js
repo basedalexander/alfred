@@ -2,7 +2,7 @@ class CommandRegistry {
     registry = [];
 
     register(func, metadata) {
-        this.register.push({
+        this.registry.push({
             func,
             metadata
         });
@@ -13,9 +13,11 @@ class CommandRegistry {
     }
 
     getFuncByName(name) {
-        const func = this.registry.find(r => r.metadata.name === name);
-        return func;
+        const registryData = this.registry.find(r => r.metadata.name === name);
+        return registryData.func;
     }
 }
 
-export const registry = new CommandRegistry();
+const registry = new CommandRegistry();
+
+module.exports = registry;
