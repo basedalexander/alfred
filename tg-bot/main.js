@@ -42,15 +42,17 @@ bot.on('message', async (msg) => {
 async function handleTelegramMessage (msg) {
   const chatId = msg.chat.id;
   const text = msg.text;
-
   console.log(`chatId: ${chatId}, prompt: ${text}`);
-  let execResult = 'execution result';
 
-  // 1. Get user input and construct a prompt for 
+  // 1. Get all commands mds
   const allMds = registry.getAllMetadatas();
+  // 2. Contruct a prompt to get instructions
   const prompt = createPrompt(allMds, text);
+  // 3. Get instructions
   const instructions = await commandsInstructionsComposer.ask(prompt);
-  execResult = await executor.execute(instructions);
+  // 4. Pass instructions to the executor
+  let execResult = await executor.execute(instructions);
+  // 5. Return result;
   const result = execResult;
   bot.sendMessage(chatId, `${result}`);
 }
