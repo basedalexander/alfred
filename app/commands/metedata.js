@@ -53,12 +53,12 @@ const getFollowersOfProfileId = {
 
 
 // Functions for Filtering
-const filterFollowersOfProfileId = {
+const filterProfilesListByFollowers = {
     name: "filterFollowersOfProfileId",
-    args: "{profileId: str, listOfProfiles: []}",
+    args: "{profileId: str, profilesList: []}",
     inputData: "",
-    description: "This functions filters through listOfProfiles to keep only those profile which follow profileId",
-    outputDescription: "Profiles that follow profileId"
+    description: "This functions filters through profilesList to keep only those profile which follow profileId",
+    outputDescription: "Profiles in profilesList that follow profileId"
 };
 
 const summarizeProfileData = {
@@ -80,7 +80,7 @@ module.exports = [
     getProfileInformationFromAirstack,
     getProfileInformationFromTheGraph,
     getFollowersOfProfileId,
-    filterFollowersOfProfileId,
+    filterProfilesListByFollowers,
     summarizeProfileData,
     
 ]
