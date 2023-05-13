@@ -16,23 +16,17 @@ def get_followers_information(profile_id):
     return dict
 
 
-<<<<<<< HEAD
 def get_profile_information_from_lens(profile_id: str, information_required):
-=======
 def get_profile_information_from_lens(profileHandle: str, information_required):
->>>>>>> d7101be006cf7f001dc890e0692fc64e047c35e9
     return dict
 
 def get_profile_information_from_airstack(profile_id: str, information_required):
     return dict
 
-<<<<<<< HEAD
 def get_profile_information_from_thegraphql(profile_id: str, information_required):
     return dict
-=======
 # def get_profile_information_from_thegraphql(graphql_query: str, information_required):
 #     return dict
->>>>>>> d7101be006cf7f001dc890e0692fc64e047c35e9
 
 
 def summarize_profile(profile_id):
