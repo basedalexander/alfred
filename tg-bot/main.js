@@ -5,7 +5,6 @@ const registry = require('../app/commands/command-registry');
 const { createPrompt } = require('../app/commands-compositor/create-prompt.func');
 const OpenAIDatasource = require('../app/commands-compositor/open-ai-service');
 const CommandExecutor = require('../app/commands-executor/command-executor');
-
 const executor = new CommandExecutor();
 const app = express();
 app.use(express.urlencoded({extended:true}));
@@ -17,27 +16,8 @@ if (process.env.mode || process.env.MODE === 'dev') {
   TELEGRAM_BOT_TOKEN = devConfig.TELEGRAM_BOT_TOKEN;
   OPENAI_API_KEY = devConfig.OPENAI_API_KEY;
 }
-
 const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, {polling: true});
 const commandsInstructionsComposer = new OpenAIDatasource(OPENAI_API_KEY)
-
-bot.on('message', async (msg) => {
-  const chatId = msg.chat.id;
-  console.log(`received message from chatid ${chatId}`);
-
-  const text = msg.text;
-  if (!text) {
-    bot.sendMessage(chatId, 'unsupported format from telegram');
-    return;
-  }
-
-  try {
-    await handleTelegramMessage(msg);
-  } catch (e) {
-    replyError(msg.chat.id, e);
-    return;
-  }
-});
 
 async function handleTelegramMessage (msg) {
   const chatId = msg.chat.id;
@@ -60,3 +40,21 @@ async function handleTelegramMessage (msg) {
 function replyError(chatId, err) {
   bot.sendMessage(chatId, `error occured: ${err}`);
 }
+
+bot.on('message', async (msg) => {
+  const chatId = msg.chat.id;
+  console.log(`received message from chatid ${chatId}`);
+
+  const text = msg.text;
+  if (!text) {
+    bot.sendMessage(chatId, 'unsupported format from telegram');
+    return;
+  }
+
+  try {
+    await handleTelegramMessage(msg);
+  } catch (e) {
+    replyError(msg.chat.id, e);
+    return;
+  }
+});
