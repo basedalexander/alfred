@@ -1,9 +1,13 @@
 const TelegramBot = require('node-telegram-bot-api');
-
 const express = require('express');
-const { registry } = require('../app/command-registry');
 const app = express();
 app.use(express.urlencoded({extended:true}));
+
+require('../app/index');
+
+
+
+const registry = require('../app/command-registry');
 
 let TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -37,7 +41,7 @@ async function handleTelegramMessage (msg) {
 
   console.log(`chatId: ${chatId}, prompt: ${text}`);
 
-  let response = `${JSON.stringify(allMds)}`;
+  let response = `${JSON.stringify(allMds, null, 4)}`;
 
   bot.sendMessage(chatId, `${response}`);
 }

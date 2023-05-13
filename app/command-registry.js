@@ -2,7 +2,7 @@ class CommandRegistry {
     registry = [];
 
     register(func, metadata) {
-        this.register.push({
+        this.registry.push({
             func,
             metadata
         });
@@ -18,4 +18,6 @@ class CommandRegistry {
     }
 }
 
-export const registry = new CommandRegistry();
+const registry = new CommandRegistry();
+
+module.exports = registry;
