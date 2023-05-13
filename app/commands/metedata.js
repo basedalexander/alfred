@@ -55,10 +55,10 @@ const getFollowersOfProfileId = {
 // Functions for Filtering
 const filterFollowersOfProfileId = {
     name: "filterFollowersOfProfileId",
-    args: "{userId: str, profileIds: []}",
+    args: "{profileId: str, listOfProfiles: []}",
     inputData: "",
-    description: "Gets a list of profile ids, and another profile id that we call userId. It checks if the profile ids in the list follow the userId i.e. profile id of the user.",
-    outputDescription: "Filtered profiles that only follow the given userID"
+    description: "This functions filters through listOfProfiles to keep only those profile which follow profileId",
+    outputDescription: "Profiles that follow profileId"
 };
 
 const summarizeProfileData = {
