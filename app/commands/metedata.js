@@ -68,6 +68,6 @@ const mds = [
     filterLLM,
 ];
 
-console.log(JSON.stringify(mds, null, 2));
+// console.log(JSON.stringify(mds, null, 2));
 
 module.exports = mds;
