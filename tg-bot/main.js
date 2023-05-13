@@ -4,6 +4,7 @@ const app = express();
 app.use(express.urlencoded({extended:true}));
 require('../app/index');
 const registry = require('../app/commands/command-registry');
+const { createPrompt } = require('../app/commands-compositor/create-prompt.func');
 
 let TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
@@ -37,10 +38,13 @@ async function handleTelegramMessage (msg) {
   let execResult = 'execution result';
 
   // 1. Get user input and construct a prompt for 
-  const prompt = ''; // createPrompt(text);
+  const allMds = registry.getAllMetadatas();
+  const prompt = createPrompt(allMds, text);
+  console.log(prompt);
   const instructions = ''; // composer.getInstructions(prompt);
   // execResult = await commandsExecutor.execute(instructions);
   const result = execResult;
+  
 
   bot.sendMessage(chatId, `${result}`);
 }

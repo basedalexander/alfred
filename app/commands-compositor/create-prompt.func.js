@@ -8,7 +8,7 @@ function createPrompt(commandsMds, prompt) {
     —
     functions you can use:
     
-    ${commandsMds}
+    ${JSON.stringify(commandsMds, null, 2)}
     
     —-
     
@@ -19,4 +19,4 @@ function createPrompt(commandsMds, prompt) {
     return result;
 }
 
-module.exports = createPrompt;
+module.exports.createPrompt = createPrompt;
