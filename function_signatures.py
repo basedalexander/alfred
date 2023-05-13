@@ -1,7 +1,29 @@
 
-# Find me people talking about longevity:  Block 1
-# Who are my weekly active followrs
+compositions = {
+    "Find me people talking about longevity": [
+        semanticSearchPostTable('longetivity',["profileId"])
+    ],
+    "Find people that follow me, that talk about longevity": [
+        semanticSearchPostTable('longetivity',["profile_id"]),
+        filterFollowersOfProfileId(userId, profileIds)
+    ]
+
+}
+
+
+
+
+
+
+
+
+# Who are my weekly active followr
+    # Get all my followers
+    # Find their activity (likes, comments etc)
+    # Keep only if they were active last week
+
 # Weekly followers
+    # 
 
 # Who are not collecting my posts.
 # Who collected more that one post
@@ -10,7 +32,6 @@
 # Weekly followers who are not collecting my posts.
 
 # Find publication (by author, by keyword, by topic)
-# Find people that follow me, that talk about longevity
 # Find find people in domain data science that I follow
 # Find posts that talk about longevity and have more that 2 replies and 1 like
 # Find people that write about solidity developement
