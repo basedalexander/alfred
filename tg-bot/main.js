@@ -1,6 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 
 const express = require('express');
+const { registry } = require('../app/command-registry');
 const app = express();
 app.use(express.urlencoded({extended:true}));
 
@@ -32,9 +33,11 @@ async function handleTelegramMessage (msg) {
     return;
   }
 
+  const allMds = registry.getAllMetadatas();
+
   console.log(`chatId: ${chatId}, prompt: ${text}`);
 
-  let response = 'hello Bruce';
+  let response = `${JSON.stringify(allMds)}`;
 
   bot.sendMessage(chatId, `${response}`);
 }

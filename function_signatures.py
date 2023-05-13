@@ -14,14 +14,14 @@ def get_followers_information(profile_id):
     return dict
 
 
-def get_profile_information_from_lens(graphql_query: str, information_required):
+def get_profile_information_from_lens(profileHandle: str, information_required):
     return dict
 
 def get_profile_information_from_airstack(graphql_query: str, information_required):
     return dict
 
-def get_profile_information_from_thegraphql(graphql_query: str, information_required):
-    return dict
+# def get_profile_information_from_thegraphql(graphql_query: str, information_required):
+#     return dict
 
 def summarize_profile(profile_id):
     # Ask GPT to summarize the content
