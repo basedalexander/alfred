@@ -29,8 +29,7 @@ function createPrompt(prompt) {
     Here is one example:
     
     query: Find posts that contain videos and talk about space tech
-    response:
-    {
+    response:{
         "name": "getPostsByContentAndType",
         "args":
         {

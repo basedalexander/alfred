@@ -26,7 +26,7 @@ class PublicationsDatasource {
             }
         })
 
-        const foundResult = res.json();
+        const foundResult = result.json();
         return foundResult;
     }
     
