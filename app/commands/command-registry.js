@@ -1,19 +1,18 @@
 class CommandRegistry {
     registry = [];
 
-    register(func, metadata) {
+    register(func) {
         this.registry.push({
-            func,
-            metadata
+            func
         });
     }
 
-    getAllMetadatas() {
-        return this.registry.map(r => r.metadata);
+    getAllFuncNames() {
+        return this.registry.map(r => r.func.name);
     }
 
     getFuncByName(name) {
-        const registryData = this.registry.find(r => r.metadata.name === name);
+        const registryData = this.registry.find(r => r.func.name === name);
         return registryData.func;
     }
 }

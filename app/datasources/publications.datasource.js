@@ -6,6 +6,7 @@ const lensClient = new LensClient({
 
 const EMBEDDING_DB_SERVICE_ENDPOINT = 'http://15.236.137.230:5555/search';
 
+
 class PublicationsDatasource {
     // embeddings call
     // @params: { query: string, limit: number, metadata: array https://docs.trychroma.com/usage-guide }

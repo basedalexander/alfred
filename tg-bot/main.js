@@ -25,9 +25,8 @@ async function handleTelegramMessage (msg) {
   console.log(`chatId: ${chatId}, prompt: ${text}`);
 
   // 1. Get all commands mds
-  const allMds = registry.getAllMetadatas();
   // 2. Contruct a prompt to get instructions
-  const prompt = createPrompt(allMds, text);
+  const prompt = createPrompt(text);
   // 3. Get instructions
   const instructions = await commandsInstructionsComposer.ask(prompt);
   // 4. Pass instructions to the executor

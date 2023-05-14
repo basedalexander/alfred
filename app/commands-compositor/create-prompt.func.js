@@ -1,4 +1,4 @@
-function createPrompt(commandsMds, prompt) {
+function createPrompt(prompt) {
     const result = `
     You translate queries from a human to a database backend. You output no comments beyond the necessary code. You only speak json. 
 
@@ -8,13 +8,11 @@ function createPrompt(commandsMds, prompt) {
     —
     functions you can use:
     
-    ${JSON.stringify(commandsMds, null, 2)}
-    
     —-
     
     Here is the first user query: ${prompt}
     
-    `;
+    `;  
 
     return result;
 }
