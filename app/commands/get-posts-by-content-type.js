@@ -2,10 +2,8 @@ const Publication = require('../datasources/publications.datasource');
 const pub = new Publication();
 
 function createPostTemplate(publication) {
-    const template = `
-        ${publication.page_content}
-        by ${publication.metadata.profile_id} at ${publication.metadata.block_timestamp}
-    `;
+    const template = `${publication.page_content.trim()}
+   (by ${publication.metadata.profile_id} at ${publication.metadata.block_timestamp})`;
     return template;
 }
 
@@ -16,8 +14,7 @@ async function getPostsByContent(args) {
         result.push(createPostTemplate(pubs[i]));
     }
 
-    result = result.join('\n\n');
-    // console.log(result);
+    result = result.join('\n-----------------------\n');
     return result;
 }
 

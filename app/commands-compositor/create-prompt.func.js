@@ -24,6 +24,9 @@ function createPrompt(prompt) {
     
     analyseLensProfileTopics: analyse the text of all the posts and comments by a given profile to find the common topics. Useful for queries like "what does this person post about?" and "What is this person interested in?"
     - profileHandle: handle of the profile, such as an ENS name (e.g. john.eth) or LENS (john.lens)
+
+    getTokenBalances: list the token balances of a given profile
+    - profileHandle
     
     
     Here is one example:
@@ -34,7 +37,7 @@ function createPrompt(prompt) {
         "args":
         {
             "query": "posts about space",
-            "type": "VIDEO",
+            "type": "VIDEO"
         }
     }
     
