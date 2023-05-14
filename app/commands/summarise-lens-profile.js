@@ -1,8 +1,8 @@
-const Profile = require('../datasources/profile.datasource');
-const Publication = require('../datasources/publications.datasource');
+const ProfileDatasource = require('../datasources/profile.datasource');
+const PublicationDatasource = require('../datasources/publications.datasource');
 const OpenAI = require('../commands-compositor/open-ai-service');
-const prof = new Profile();
-const pub = new Publication();
+const profileDatasource = new ProfileDatasource();
+const pub = new PublicationDatasource();
 const openai = new OpenAI();
 
 
@@ -33,7 +33,7 @@ async function summariseLensProfile(args) {
 
     console.log(args);
     // 1. Get lens profile by id
-    const lensProfile = await prof.getByHandle(args.profileHandle);  
+    const lensProfile = await profileDatasource.getByHandle(args.profileHandle);  
 
     console.log(lensProfile);
 
