@@ -9,8 +9,8 @@ function renderDictTable(data) {
 
   const dataRows = data.map(item => {
     const tokenType = item.tokenType;
-    const tokenName = item.tokenNfts.token.name;
-    const imageUrl = item.tokenNfts.contentValue.image ? item.tokenNfts.contentValue.image.original : '';
+    const tokenName = item.tokenNfts?.token?.name;
+    const imageUrl = item.tokenNfts?.contentValue?.image ? item.tokenNfts?.contentValue.image.original : '';
 
     return `| ${tokenType} | ${tokenName} | [Image](${imageUrl}) |`;
   });
@@ -57,9 +57,16 @@ async function getTokenBalances(args) {
         body: JSON.stringify({query: query, variables: {limit: 10,offset: 0}})
     });
   
-    const data = await response.json();
+  const data = await response.json();
+    if (!data || !data.data || !data.data.Wallet) {
+      return 'nothing in this wallet according to airstack';
+    }
     const markdownTable = renderDictTable(data.data.Wallet.tokenBalances);
       
+    if (!markdownTable || markdownTable.length === 0) {
+      return 'nothing in this wallet according to airstack';
+    }
+  
     return markdownTable;
 }
 
