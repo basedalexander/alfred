@@ -3,8 +3,8 @@ const PublicationDatasource = require('../datasources/publications.datasource');
 const OpenAI = require('../commands-compositor/open-ai-service');
 const profileDatasource = new ProfileDatasource();
 const publicationsDatasource = new PublicationDatasource();
-const openai = new OpenAI();
-
+require('dotenv').config();
+const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 function generateSummaryPrompt(posts, profile) {
     return `
