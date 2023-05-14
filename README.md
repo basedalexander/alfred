@@ -22,9 +22,9 @@ Examples Queries:
 
 # How it's Made
 A lot had to come together to make our vision a reality (in just under one day!): 
-    - Researching the initial use cases by interviewing our ideal users and then exploring what was feasible to build within 24hrs 
-    - Filtering and downloading the LENS data. 
-    - Generating embeddings for each of the posts and storing them in a vector db (Chroma). Not having access to a GPU, fully embedding all LENS posts would take many days on a macbook. 
-    - Iterating many times over the backend execution architecture, command format and the prompts to the LLM 
-    - Using and understanding external APIs including the GraphQL endpoints for LENS and Airstack
+- Researching the initial use cases by interviewing our ideal users and then exploring what was feasible to build within 24hrs 
+- Filtering and downloading the LENS data. 
+- Generating embeddings for each of the posts and storing them in a vector db (Chroma). Not having access to a GPU, fully embedding all LENS posts would take many days on a macbook. 
+- Iterating many times over the backend execution architecture, command format and the prompts to the LLM 
+- Using and understanding external APIs including the GraphQL endpoints for LENS and Airstack
 
