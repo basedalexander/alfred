@@ -1,4 +1,4 @@
-async function getPostsByContent(args) {
-}
+// async function getPostsByContent(args) {
+// }
 
-module.exports = getPostsByContent;
+// module.exports = getPostsByContent;

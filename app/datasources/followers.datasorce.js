@@ -1,4 +1,4 @@
-import { LensClient, development } from "@lens-protocol/client";
+const { LensClient, development } = require("@lens-protocol/client");
 
 const lensClient = new LensClient({
   environment: development
@@ -13,4 +13,4 @@ class FollowersDatasource {
     }
 }
 
-module.exports = { FollowersDatasource }
+module.exports = FollowersDatasource;

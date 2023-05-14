@@ -1,14 +1,15 @@
+const OpenAIDatasource = require('./open-ai-service');
+
 let OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const openai = new OpenAIDatasource(OPENAI_API_KEY);
 const createPrompt = require('./create-prompt.func');
-const registry = require('../commands/command-registry');
 
-class CommandsCompositor {
+class InstuctionComposer {
     async compose (prompt) {
-        const mds = registry.getAllMetadatas();
-        const prompt = createPrompt(mds, prompt);
-        const commandsCompositions = openai.pr
+        const newPrompt = createPrompt(prompt);
+        const instruction = openai.ask(newPrompt);
+        return instruction;
     }
 }
 
-const commandsCompositor = new CommandsCompositor();
+module.exports = InstuctionComposer;
