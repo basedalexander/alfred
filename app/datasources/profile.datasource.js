@@ -37,6 +37,8 @@ class ProfileDatasource {
 
         return await getProfileByHandleGraphQl(handle);
     }
+
+    
 }
 
 async function getProfileByHandleGraphQl (handle) {
@@ -129,5 +131,6 @@ async function getProfileByHandleGraphQl (handle) {
     const response = await client.query({ query: query, variables: { handle } });
     return response;
 }
+
 
 module.exports = ProfileDatasource;

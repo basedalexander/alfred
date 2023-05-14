@@ -13,4 +13,4 @@ class FollowingsDatasource {
     }
 }
 
-module.exports = { FollowingsDatasource }
+module.exports = FollowingsDatasource;

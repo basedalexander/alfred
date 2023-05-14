@@ -13,4 +13,4 @@ class FollowersDatasource {
     }
 }
 
-module.exports = { FollowersDatasource }
+module.exports = FollowersDatasource;
