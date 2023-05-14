@@ -1,10 +1,18 @@
-class CommandExecutor {
-    async execute(instructions) {
-        // 1. define steps
-        // 2. 
+const registry = require("../commands/command-registry");
 
-        const result = 'execution result mock';
+class CommandExecutor {
+    // @instruction: array of 
+    async execute(instruction) {
+        // 1. get function which is query.type
+        const func = await registry.getFuncByName(instruction.name);
+        // 2. execute it with args 
+        const execResult = await func(instruction.args);
+        const result = execResult;
         return result;
+    }
+
+    async executeMany(instructions) {
+
     }
 }
 
