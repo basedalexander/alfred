@@ -7,12 +7,12 @@ understand content, people and complex network structures in more human comprehe
 
 It helps you to discover relevant content, find useful accounts to follow, understand your followers better!
 
-Key features: 
+# Key features: 
 - Communicate in a natural language via telegram bot. 
 - Get insights from from data sources on Lens Protocol, Airstack and BigQuery 
 - Help make good decisions by having all relevant information at tip of finger
 
-Examples Queries: 
+# Examples Queries: 
 - Show me the most influential people that talk about DAOs. 
 - Tell me about stanis.lens 
 - Tell me about Token holdings of stanis.eth 
