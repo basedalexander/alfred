@@ -1,4 +1,4 @@
-import { LensClient, development } from "@lens-protocol/client";
+const { LensClient, development } = require("@lens-protocol/client");
 
 const lensClient = new LensClient({
   environment: development
@@ -19,14 +19,10 @@ class PublicationsDatasource {
             }
         })
 
-        const foundResult = res.json();
+        const foundResult = result.json();
         return foundResult;
     }
-    
-    async getByAuthor(handle) {
-        const pubRequestObj = {};
-        return await lensClient.publication.fetchAll(pubRequestObj);
-    }
+
 
     async getByProfileId(id) {
         // todo implement
@@ -44,4 +40,4 @@ class PublicationsDatasource {
     }
 }
 
-module.exports = { PublicationsDatasource }
+module.exports = PublicationsDatasource;
