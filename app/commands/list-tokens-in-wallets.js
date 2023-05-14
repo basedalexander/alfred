@@ -37,6 +37,10 @@ async function getTokenBalances(identity) {
       return JSON.stringify(await response.json());
 }
 
+getTokenBalances('stani.lens').then((result) => {
+    console.log(result); 
+  });
+
 module.exports = [getTokenBalances];
 
 
