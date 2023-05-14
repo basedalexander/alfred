@@ -1,9 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 require('../app/index');
-const registry = require('../app/commands/command-registry');
-const { createPrompt } = require('../app/commands-compositor/create-prompt.func');
-const OpenAIDatasource = require('../app/commands-compositor/open-ai-service');
 const CommandExecutor = require('../app/commands-executor/command-executor');
 const InstructionComposer = require('../app/commands-compositor/commands-compositor');
 
@@ -20,7 +17,6 @@ if (process.env.mode || process.env.MODE === 'dev') {
   OPENAI_API_KEY = devConfig.OPENAI_API_KEY;
 }
 const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, {polling: true});
-const commandsInstructionsComposer = new OpenAIDatasource(OPENAI_API_KEY)
 
 async function handleTelegramMessage (msg) {
   const chatId = msg.chat.id;
