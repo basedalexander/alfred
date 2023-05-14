@@ -5,7 +5,10 @@ const registry = require('../app/commands/command-registry');
 const { createPrompt } = require('../app/commands-compositor/create-prompt.func');
 const OpenAIDatasource = require('../app/commands-compositor/open-ai-service');
 const CommandExecutor = require('../app/commands-executor/command-executor');
+const InstructionComposer = require('../app/commands-compositor/commands-compositor');
+
 const executor = new CommandExecutor();
+const instructionComposer = new InstructionComposer();
 const app = express();
 app.use(express.urlencoded({extended:true}));
 
@@ -24,14 +27,11 @@ async function handleTelegramMessage (msg) {
   const text = msg.text;
   console.log(`chatId: ${chatId}, prompt: ${text}`);
 
-  // 1. Get all commands mds
-  // 2. Contruct a prompt to get instructions
-  const prompt = createPrompt(text);
-  // 3. Get instructions
-  const instructions = await commandsInstructionsComposer.ask(prompt);
-  // 4. Pass instructions to the executor
-  let execResult = await executor.execute(instructions);
-  // 5. Return result;
+  // 1. Create instruction based on text
+  const instruction = await instructionComposer.compose(text);
+  // 2. Pass instructions to the executor
+  let execResult = await executor.execute(instruction);
+  // 3. Return result;
   const result = execResult;
   bot.sendMessage(chatId, `${result}`);
 }

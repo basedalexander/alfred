@@ -17,4 +17,4 @@ function createPrompt(prompt) {
     return result;
 }
 
-module.exports.createPrompt = createPrompt;
+module.exports = createPrompt;
