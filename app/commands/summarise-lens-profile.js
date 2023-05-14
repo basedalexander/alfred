@@ -3,7 +3,8 @@ const PublicationDatasource = require('../datasources/publications.datasource');
 const OpenAI = require('../commands-compositor/open-ai-service');
 const profileDatasource = new ProfileDatasource();
 const publicationsDatasource = new PublicationDatasource();
-const OPENAI_API_KEY = process.env['OPENAI_API_KEY'];
+require('dotenv').config();
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 const openai = new OpenAI(OPENAI_API_KEY);
 

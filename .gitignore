@@ -3,3 +3,4 @@ node_modules
 tg-bot/node_modules
 .ipynb_checkpoints
 ./compositions.py
+.env
