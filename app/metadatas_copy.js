@@ -133,11 +133,3 @@ const mds = [
 
 console.log(createPrompt(mds, "Give me all the people talking about longevity, give information for each persons"));
 module.exports = mds;
-
-
-
-
-
-
-
-

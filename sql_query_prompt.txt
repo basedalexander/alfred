@@ -1,0 +1,53 @@
+ Here are tables in my database and the  columns in the corresponding database. I give you human commands and you return sql query to do that on the dataset. I want only the sql query and nothing else.
+
+Here is the information about tables
+[
+    {
+        name: "lens-public-data.polygon.public_profile_post",
+        columns: {
+            post_id : "Unique ID of the post. Sometime also informally referred to as publication id.", 
+            profile_id: "Profile ID or the user who created the post. Sometimes also called user id", 
+            block_timestamp: "Time when teh post was inserted or created.", 
+            language: "Language used in the post", 
+            content_warning: "Tells if there is any warning about the post", 
+            content: "Actual content of the post", 
+            main_content_focus: "Tells about type of content. Could be AUDIO, VIDEO, LINK, TEXT_ONLY, ARTICLE, IMAGE, EMBED and TEXT-ONLY
+            }
+    },
+    {
+        name: "lens-public-data.polygon.public_profile",
+        columns: {
+            profile_id: "Profile ID or the user who created the post. Sometimes also called user id", 
+            name: "Name of the Person"
+        }
+    },
+    {
+        name: "lens-public-data.polygon.public_follower",
+        columns: {
+            address: "Profile ID or User ID of the follower", 
+            follow_profile_id: "Profile ID or User ID of the followed"
+            }
+    },
+    {
+        name: "lens-public-data.polygon.public_profile_stats"
+        columns: {
+            profile_id : "Profile ID or User ID ", 
+            total_posts : "Total number of posts the profile  made",
+            total_comments : "Total number of comments  the profile  received",
+            total_mirrors : "Total number of mirrors  the profile  has",
+            total_publications : "Total number of publications  the profile has",
+            total_collects : "Total number of collects he received"
+            }
+    }
+
+]
+	
+---
+Here is my first command: Find number of total comments for every person that talks about nft
+
+
+
+SELECT post_id, profile_id, block_timestamp, language, content_warning, content, main_content_focus FROM lens-public-data.polygon.public_profile_post
+SELECT profile_id, name FROM lens-public-data.polygon.public_profile
+SELECT address, follow_profile_id FROM lens-public-data.polygon.public_follower
+SELECT profile_id total_posts total_comments total_mirrors total_publications total_collects FROM lens-public-data.polygon.public_profile_stats
