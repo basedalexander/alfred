@@ -6,6 +6,6 @@ const summariseLensProfile = require('./summarise-lens-profile');
 module.exports.commandFunctions = [
     analyseLensProfileTopics,
     getPostsByContent,
-    getPostsByContentAndType,
+    ...getPostsByContentAndType,
     summariseLensProfile
 ]
