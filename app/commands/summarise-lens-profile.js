@@ -40,13 +40,9 @@ async function summariseLensProfile(args) {
 
     let post_text = collectPosts(posts);
 
-
-    // 3. Generate prompt based on posts
     const prompt = generateSummaryPrompt(post_text, lensProfile);
     const result = await openai.ask(prompt);
-    // console.log(result);
-    // 4. Return summarised posts
-
+    return result;
 }
 
 // summariseLensProfile({ "profileHandle": "stani.lens" })

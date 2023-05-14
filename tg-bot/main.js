@@ -24,7 +24,7 @@ async function handleTelegramMessage (msg) {
   console.log(`chatId: ${chatId}, prompt: ${text}`);
 
   // 1. Create instruction based on text
-  const instruction = await instructionComposer.compose(text);
+  const instruction =  await instructionComposer.compose(text);
   // 2. Pass instructions to the executor
   let execResult = await executor.execute(instruction);
   // 3. Return result;
@@ -53,3 +53,4 @@ bot.on('message', async (msg) => {
     return;
   }
 });
+
