@@ -3,7 +3,7 @@ const PublicationDatasource = require('../datasources/publications.datasource');
 const OpenAI = require('../commands-compositor/open-ai-service');
 const profileDatasource = new ProfileDatasource();
 const pub = new PublicationDatasource();
-const openai = new OpenAI();
+const openai = new OpenAI("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");
 
 
 function generateSummaryPrompt(posts, profile) {
@@ -12,7 +12,7 @@ function generateSummaryPrompt(posts, profile) {
     best guess as to what this lens profile is about and summarise all the
     information about it.
     
-    Profile: ${profile}
+    Profile: ${JSON.stringify(profile)}
 
     Posts:
     ${posts}
@@ -35,10 +35,12 @@ async function summariseLensProfile(args) {
     // 1. Get lens profile by id
     const lensProfile = await profileDatasource.getByHandle(args.profileHandle);  
 
-    console.log(lensProfile);
+    let prof = lensProfile.data.profile;
+    console.log(prof);
+
 
     // 2. Get all posts by lens profile id
-    const posts = await pub.getByIds([lensProfile.id]);
+    const posts = await pub.getByIds([prof.id]);
     let post_text = collectPosts(posts);
     console.log(post_text);
 
