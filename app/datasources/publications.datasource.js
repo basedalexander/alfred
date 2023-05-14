@@ -55,7 +55,7 @@ class PublicationsDatasource {
         query Publications ($profileId: ProfileId!){
             publications(request: {
               profileId: $profileId,
-              publicationTypes: [POST, COMMENT, MIRROR],
+              publicationTypes: [POST],
               limit: 50
             }) {
               items {

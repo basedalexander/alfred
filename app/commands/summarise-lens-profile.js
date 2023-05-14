@@ -3,7 +3,7 @@ const PublicationDatasource = require('../datasources/publications.datasource');
 const OpenAI = require('../commands-compositor/open-ai-service');
 const profileDatasource = new ProfileDatasource();
 const publicationsDatasource = new PublicationDatasource();
-const openai = new OpenAI("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");
+const openai = new OpenAI();
 
 
 function generateSummaryPrompt(posts, profile) {
@@ -24,7 +24,7 @@ function generateSummaryPrompt(posts, profile) {
 function collectPosts(posts) {
     const result = [];
     for (let i = 0; i < posts.length; i++) {
-        result.push(posts[i].page_content);
+        result.push(posts[i].metadata.content);
     }
     return result.join('\n\n');
 }
@@ -41,6 +41,7 @@ async function summariseLensProfile(args) {
 
     // 2. Get all posts by lens profile id
     const posts = await publicationsDatasource.getByIdsGraphQL(prof.id);
+
     let post_text = collectPosts(posts);
     console.log(post_text);
 
