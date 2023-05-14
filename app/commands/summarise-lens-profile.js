@@ -3,8 +3,9 @@ const PublicationDatasource = require('../datasources/publications.datasource');
 const OpenAI = require('../commands-compositor/open-ai-service');
 const profileDatasource = new ProfileDatasource();
 const publicationsDatasource = new PublicationDatasource();
-const openai = new OpenAI("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");
+const OPENAI_API_KEY = process.env['OPENAI_API_KEY'];
 
+const openai = new OpenAI(OPENAI_API_KEY);
 
 function generateSummaryPrompt(posts, profile) {
     return `
