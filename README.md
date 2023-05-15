@@ -28,3 +28,6 @@ A lot had to come together to make our vision a reality (in just under one day!)
 - Iterating many times over the backend execution architecture, command format and the prompts to the LLM 
 - Using and understanding external APIs including the GraphQL endpoints for LENS and Airstack
 
+
+# Polygon deployment link
+https://twitter.com/0xShahnawaz/status/1657609077952765952
