@@ -1,7 +1,5 @@
 # Alfred: A personal assistant for Lens Protocol
 
-![Alfred Logo](alfered.png)
-
 Alfred is a personal assistant for Lens Protocol. It accepts queries in natural language and executes them on Lens Protocol data to help us
 understand content, people and complex network structures in more human comprehensible form.
 
@@ -31,3 +29,6 @@ A lot had to come together to make our vision a reality (in just under one day!)
 
 # Polygon deployment link
 https://twitter.com/0xShahnawaz/status/1657609077952765952
+
+# Link to Embedding Search Backend 
+https://github.com/danduma/alfred_server
